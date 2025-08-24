@@ -10,10 +10,16 @@ class CustomerController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $customers = Customer::orderBy('id', 'desc')
-                    ->paginate(10);
+        if($request->has('search') && $request->search != ''){
+            $customers = Customer::where('name', 'like', '%'.$request->search.'%')
+                        ->paginate(10);
+        }else{
+            $customers = Customer::orderBy('id', 'desc')
+                ->paginate(10);
+        }
+
         return view('customers.index', compact('customers'));
     }
 

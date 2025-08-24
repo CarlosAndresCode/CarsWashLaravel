@@ -7,8 +7,16 @@
                 <div class="card bg-white shadow">
                     <div class="card-header">{{ __('Customers') }}</div>
                     <div class="card-body">
+                        <div class="mb-1 float-start">
+                            <form action="{{ route('customers.index') }}" method="GET">
+                                <div class="input-group">
+                                    <input type="search" name="search" class="form-control" placeholder="{{ __('Search') }}" value="{{ request('search') }}">
+                                    <button class="btn btn-outline-secondary" type="submit">{{ __('Search') }}</button>
+                                </div>
+                            </form>
+                        </div>
                         <div class="mb-1 float-end">
-                            <a href="{{ route('customers.create') }}" class="btn btn-primary">Add Customer</a>
+                            <a href="{{ route('customers.create') }}" class="btn btn-primary">Add</a>
                         </div>
                         @if (session('status'))
                             <div class="alert alert-success" role="alert">
@@ -20,9 +28,9 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Phone</th>
+                                    <th>NAME</th>
+                                    <th>EMAIL</th>
+                                    <th>PHONE</th>
                                 </tr>
                             </thead>
                             <tbody>
