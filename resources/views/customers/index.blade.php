@@ -41,7 +41,7 @@
                                         <td>{{ $customer->getFullNameAttribute() }}</td>
                                         <td>{{ $customer->email }}</td>
                                         <td>{{ $customer->phone }}</td>
-                                        <td>
+                                        <td class="text-center">
                                             <a href="{{ route('customers.edit', $customer->id) }}" class="btn btn-primary btn-sm">Edit</a>
                                         </td>
                                     </tr>

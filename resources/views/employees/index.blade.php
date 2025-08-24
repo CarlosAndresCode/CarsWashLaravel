@@ -41,7 +41,7 @@
                                         <td>{{ $employee->getFullNameAttribute() }}</td>
                                         <td>{{ $employee->email }}</td>
                                         <td>{{ $employee->phone }}</td>
-                                        <td>
+                                        <td class="text-center">
                                             <a href="{{ route('employees.edit', $employee->id) }}" class="btn btn-primary btn-sm">Edit</a>
                                         </td>
                                     </tr>
