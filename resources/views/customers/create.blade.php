@@ -13,35 +13,45 @@
                                 <label for="name" class="form-label">Name</label>
                                 <input type="text" class="form-control" id="name" name="name" required>
                                 @error('name')
-                                    <p class="text-danger">{{ $message }}</p>
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
                                 @enderror
                             </div>
                             <div class="mb-3">
                                 <label for="last_name" class="form-label">Last Name</label>
                                 <input type="text" class="form-control" id="last_name" name="last_name" required>
                                 @error('last_name')
-                                    <p class="text-danger">{{ $message }}</p>
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
                                 @enderror
                             </div>
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
                                 <input type="email" class="form-control" id="email" name="email" required>
                                 @error('email')
-                                 <p class="text-danger">{{ $message }}</p>
+                                 <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
                                 @enderror
                             </div>
                             <div class="mb-3">
                                 <label for="phone" class="form-label">Phone</label>
                                 <input type="text" class="form-control" id="phone" name="phone" required>
                                 @error('phone')
-                                    <p class="text-danger">{{ $message }}</p>
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
                                 @enderror
                             </div>
                             <div class="mb-3">
                                 <label for="address" class="form-label">Address</label>
                                 <input type="text" class="form-control" id="address" name="address" required>
                                 @error('address')
-                                    <p class="text-danger">{{ $message }}</p>
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
                                 @enderror
                             </div>
                             <x-button>{{ __('Save') }}</x-button>
