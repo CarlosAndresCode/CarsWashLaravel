@@ -10,7 +10,7 @@
                         <div class="mb-1 float-start">
                             <form action="{{ route('customers.index') }}" method="GET">
                                 <div class="input-group">
-                                    <input type="search" name="search" class="form-control" placeholder="{{ __('Search') }}" value="{{ request('search') }}">
+                                    <input type="search" name="search" class="form-control bg-white" placeholder="{{ __('Search') }}" value="{{ request('search') }}">
                                     <button class="btn btn-outline-secondary" type="submit">{{ __('Search') }}</button>
                                 </div>
                             </form>
@@ -24,22 +24,26 @@
                             </div>
                         @endif
 
-                        <table class="table table-bordered ">
+                        <table class="table table-bordered">
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>NAME</th>
-                                    <th>EMAIL</th>
-                                    <th>PHONE</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($customers as $customer)
                                     <tr>
                                         <td>{{ $customer->id }}</td>
-                                        <td>{{ $customer->name }}</td>
+                                        <td>{{ $customer->getFullNameAttribute() }}</td>
                                         <td>{{ $customer->email }}</td>
                                         <td>{{ $customer->phone }}</td>
+                                        <td>
+                                            <a href="{{ route('customers.edit', $customer->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>

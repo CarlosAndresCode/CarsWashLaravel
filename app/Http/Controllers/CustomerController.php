@@ -14,10 +14,12 @@ class CustomerController extends Controller
     public function index(Request $request)
     {
         if($request->has('search') && $request->search != ''){
-            $customers = Customer::where('name', 'like', '%'.$request->search.'%')
+            $customers = Customer::Select(['id', 'name', 'last_name', 'email', 'phone'])
+                        ->where('name', 'like', '%'.$request->search.'%')
                         ->paginate(10);
         }else{
-            $customers = Customer::orderBy('id', 'desc')
+            $customers = Customer::Select(['id', 'name', 'last_name', 'email', 'phone'])
+                ->orderBy('id', 'desc')
                 ->paginate(10);
         }
 
@@ -57,7 +59,7 @@ class CustomerController extends Controller
      */
     public function edit(Customer $customer)
     {
-        //
+        return view('customers.edit', compact('customer'));
     }
 
     /**
@@ -65,7 +67,18 @@ class CustomerController extends Controller
      */
     public function update(Request $request, Customer $customer)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'email' => 'required|email|unique:customers,email,'.$customer->id,
+            'phone' => 'nullable|string|max:20',
+            'address' => 'nullable|string|max:255',
+        ]);
+
+        $customer->update($request->all());
+
+        return redirect()->route('customers.index')
+            ->with('success', 'Customer updated successfully.');
     }
 
     /**
