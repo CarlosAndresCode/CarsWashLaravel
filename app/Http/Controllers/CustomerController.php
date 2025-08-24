@@ -12,7 +12,8 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $customers = Customer::paginate();
+        $customers = Customer::orderBy('id', 'desc')
+                    ->paginate(10);
         return view('customers.index', compact('customers'));
     }
 
@@ -29,7 +30,18 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:customers',
+            'phone' => 'required|string|max:20',
+            'address' => 'required|string|max:255',
+        ]);
+
+        $customer = Customer::create($validated);
+
+        return redirect()->route('customers.index')
+            ->with('success', 'Customer created successfully.');
     }
 
     /**
