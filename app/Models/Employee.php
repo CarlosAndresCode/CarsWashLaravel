@@ -33,4 +33,9 @@ class Employee extends Model
             'id' => 'integer',
         ];
     }
+
+    public function getFullNameAttribute()
+    {
+        return $this->name . ' ' . $this->last_name;
+    }
 }
