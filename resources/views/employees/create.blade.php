@@ -55,7 +55,7 @@
                                 @enderror
                             </div>
                             <x-button>{{ __('Save') }}</x-button>
-                            <a href="{{ route('employees.index') }}" class="btn btn-danger">{{ __('Cancel') }}</a>
+                            <x-link href="{{ route('employees.index') }}" class="btn btn-danger">{{ __('Cancel') }}</x-link>
                         </form>
                     </div>
                 </div>
