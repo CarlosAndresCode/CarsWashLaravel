@@ -16,33 +16,32 @@
                             </form>
                         </div>
                         <div class="mb-1 float-end">
-                            <a href="{{ route('employees.create') }}" class="btn btn-primary">Add</a>
+                            <x-link href="{{ route('employees.create') }}" class="btn btn-primary">
+                                {{ __('Add') }}
+                            </x-link>
                         </div>
-                        @if (session('status'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('status') }}
-                            </div>
-                        @endif
 
                         <table class="table table-bordered align-middle">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
+                                    <th class="text-center">ID</th>
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Phone</th>
+                                    <th>Position</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($employees as $employee)
                                     <tr>
-                                        <td>{{ $employee->id }}</td>
+                                        <td class="text-center">{{ $employee->id }}</td>
                                         <td>{{ $employee->getFullNameAttribute() }}</td>
                                         <td>{{ $employee->email }}</td>
                                         <td>{{ $employee->phone }}</td>
+                                        <td>{{ $employee->position }}</td>
                                         <td class="text-center">
-                                            <a href="{{ route('employees.edit', $employee->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                                            <a href="{{ route('employees.edit', $employee->id) }}" class="btn btn-primary btn-sm">{{__('Edit')}}</a>
                                         </td>
                                     </tr>
                                 @endforeach

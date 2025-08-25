@@ -15,19 +15,17 @@
                                 </div>
                             </form>
                         </div>
+
                         <div class="mb-1 float-end">
-                            <a href="{{ route('customers.create') }}" class="btn btn-primary">Add</a>
+                            <x-link href="{{ route('customers.create') }}" class="btn btn-primary">
+                                {{ __('Add') }}
+                            </x-link>
                         </div>
-                        @if (session('status'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('status') }}
-                            </div>
-                        @endif
 
                         <table class="table table-bordered align-middle">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
+                                    <th class="text-center">ID</th>
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Phone</th>
@@ -37,12 +35,13 @@
                             <tbody>
                                 @foreach ($customers as $customer)
                                     <tr>
-                                        <td>{{ $customer->id }}</td>
+                                        <td class="text-center">{{ $customer->id }}</td>
                                         <td>{{ $customer->getFullNameAttribute() }}</td>
                                         <td>{{ $customer->email }}</td>
                                         <td>{{ $customer->phone }}</td>
                                         <td class="text-center">
-                                            <a href="{{ route('customers.edit', $customer->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                                            <a href="{{ route('customers.edit', $customer->id) }}"
+                                               class="btn btn-primary btn-sm">{{__('Edit')}}</a>
                                         </td>
                                     </tr>
                                 @endforeach

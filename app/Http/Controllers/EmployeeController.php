@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateEmployeeRequest;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 
@@ -13,11 +14,11 @@ class EmployeeController extends Controller
     public function index(Request $request)
     {
         if($request->has('search') && $request->search != ''){
-            $employees = Employee::Select(['id', 'name', 'last_name', 'email', 'phone'])
+            $employees = Employee::Select(['id', 'name', 'last_name', 'email', 'phone', 'position'])
                 ->where('name', 'like', '%'.$request->search.'%')
                 ->paginate(10);
         }else{
-            $employees = Employee::Select(['id', 'name', 'last_name', 'email', 'phone'])
+            $employees = Employee::Select(['id', 'name', 'last_name', 'email', 'phone', 'position'])
                 ->orderBy('id', 'desc')
                 ->paginate(10);
         }
@@ -35,17 +36,9 @@ class EmployeeController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CreateEmployeeRequest $request)
     {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'last_name' => 'required|string|max:255',
-            'email' => 'required|email|unique:employees,email',
-            'phone' => 'nullable|string|max:20',
-            'position' => 'nullable|string|max:255',
-        ]);
-
-        Employee::create($validated);
+        Employee::create($request->validate());
 
         return redirect()->route('employees.index')
                          ->with('success', 'Employee created successfully.');
