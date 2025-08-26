@@ -32,4 +32,9 @@ class Service extends Model
             'price' => 'decimal:2',
         ];
     }
+
+    public function getFormattedPriceAttribute(): string
+    {
+        return '$ ' . number_format($this->price, 0 , ',', '.');
+    }
 }
