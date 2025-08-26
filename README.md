@@ -59,3 +59,69 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+## Cómo pasar mis cambios sin comittear a una nueva rama
+
+Hay dos formas seguras de mover tus cambios locales sin necesidad de hacer commit antes.
+
+1) Método directo (lo más simple)
+- Si solo quieres que tus cambios actuales sigan contigo en una nueva rama:
+
+  ```bash
+  git switch -c nombre-de-la-nueva-rama
+  # (equivalente clásico) git checkout -b nombre-de-la-nueva-rama
+  ```
+
+  Notas:
+  - Git trasladará tus cambios no confirmados (staged y unstaged) a la nueva rama, siempre que no haya conflictos con el punto de partida de esa rama.
+  - La rama anterior quedará sin esos cambios en su working tree (no se "copian"; se mueven contigo al cambiar de rama).
+
+2) Método con stash (si quieres dejar limpia la rama actual y luego aplicar los cambios en la nueva)
+- Útil si quieres que la rama actual quede limpia antes de moverte, o si hay riesgo de conflicto al cambiar directamente.
+
+  ```bash
+  # Guarda cambios (incluye archivos sin seguimiento con -u)
+  git stash push -u -m "mover cambios a nueva rama"
+
+  # Crea y cambia a la nueva rama
+  git switch -c nombre-de-la-nueva-rama
+
+  # Recupera los cambios del stash
+  git stash pop
+  ```
+
+  Variantes útiles:
+  - Mantener lo que está staged y guardar solo lo no staged:
+    ```bash
+    git stash push -k -m "solo unstaged"   # --keep-index
+    ```
+  - Ver los stashes guardados y elegir uno concreto:
+    ```bash
+    git stash list
+    git stash show -p stash@{0}   # ver diff del stash
+    git stash apply stash@{0}     # aplicar sin borrar el stash
+    git stash drop stash@{0}      # borrar ese stash después
+    ```
+
+Comprobaciones y tips
+- Ver estado antes y después:
+  ```bash
+  git status
+  ```
+- Volver rápidamente a la rama anterior:
+  ```bash
+  git switch -
+  ```
+- Si al cambiar de rama Git avisa de conflictos con tus cambios sin commit:
+  - Usa el método con stash (arriba), o
+  - Haz commit temporal (WIP) y luego reordena/edita más tarde, o
+  - Guarda solo parte de los cambios: 
+    ```bash
+    # aplicar interactivamente partes del stash (método moderno)
+    git restore -p --source=stash@{0} .
+    ```
+
+Resumen rápido
+- Sin complicaciones: git switch -c nueva-rama
+- Dejar limpia la rama actual primero: git stash -u && git switch -c nueva-rama && git stash pop

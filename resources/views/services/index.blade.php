@@ -27,6 +27,7 @@
                                     <th class="text-center">ID</th>
                                     <th>Name</th>
                                     <th>Price</th>
+                                    <th>Type</th>
                                     <th class="text-center">Actions</th>
                                 </tr>
                             </thead>
@@ -36,6 +37,7 @@
                                         <td class="text-center">{{ $service->id }}</td>
                                         <td>{{ $service->name }}</td>
                                         <td>{{ $service->formatted_price }}</td>
+                                        <td>{!! $service->type_service->badge() !!}</td>
                                         <td class="text-center">
                                             <a href="{{ route('services.edit', $service->id) }}" class="btn btn-primary btn-sm">{{__('Edit')}}</a>
                                         </td>

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enum\TypeService;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -18,6 +19,7 @@ class Service extends Model
         'name',
         'description',
         'price',
+        'type_service',
     ];
 
     /**
@@ -30,6 +32,7 @@ class Service extends Model
         return [
             'id' => 'integer',
             'price' => 'decimal:2',
+            'type_service' => TypeService::class,
         ];
     }
 

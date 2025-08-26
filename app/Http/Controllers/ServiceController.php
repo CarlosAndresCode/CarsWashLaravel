@@ -13,11 +13,11 @@ class ServiceController extends Controller
     public function index(Request $request)
     {
         if($request->has('search') && $request->search != ''){
-            $services = Service::Select(['id', 'name', 'price'])
+            $services = Service::Select(['id', 'name','type_service', 'price'])
                 ->where('name', 'like', '%'.$request->search.'%')
                 ->paginate(10);
         }else{
-            $services = Service::Select(['id', 'name', 'price'])
+            $services = Service::Select(['id', 'name', 'type_service', 'price'])
                 ->orderBy('id', 'desc')
                 ->paginate(10);
         }

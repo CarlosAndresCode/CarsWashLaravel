@@ -2,9 +2,9 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
+use App\Enum\TypeService;
 use App\Models\Service;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ServiceFactory extends Factory
 {
@@ -24,6 +24,7 @@ class ServiceFactory extends Factory
             'name' => fake()->name(),
             'description' => fake()->text(),
             'price' => fake()->randomFloat(2, 0, 99999999.99),
+            'type_service' => fake()->randomElement(TypeService::values()),
         ];
     }
 }
