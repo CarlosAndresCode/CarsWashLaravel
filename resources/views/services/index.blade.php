@@ -35,7 +35,7 @@
                                     <tr>
                                         <td class="text-center">{{ $service->id }}</td>
                                         <td>{{ $service->name }}</td>
-                                        <td>{{ $service->getFormattedPriceAttribute() }}</td>
+                                        <td>{{ $service->formatted_price }}</td>
                                         <td class="text-center">
                                             <a href="{{ route('services.edit', $service->id) }}" class="btn btn-primary btn-sm">{{__('Edit')}}</a>
                                         </td>
