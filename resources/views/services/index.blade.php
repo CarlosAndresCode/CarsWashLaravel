@@ -8,7 +8,7 @@
                     <div class="card-header">{{ __('Services ') }}</div>
                     <div class="card-body">
                         <div class="mb-1 float-start">
-                            <form action="{{ route('employees.index') }}" method="GET">
+                            <form action="{{ route('services.index') }}" method="GET">
                                 <div class="input-group">
                                     <input type="search" name="search" class="form-control bg-white" placeholder="{{ __('Search') }}" value="{{ request('search') }}">
                                     <button class="btn btn-outline-secondary" type="submit">{{ __('Search') }}</button>
