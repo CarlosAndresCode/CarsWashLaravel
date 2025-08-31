@@ -32,6 +32,17 @@
                                     </span>
                                 @enderror
                             </div>
+                            <div class="mb-3">
+                                <label for="type_service" class="form-label">{{__('Type of Service')}}</label>
+                                <select class="form-select bg-white" id="type_service" name="type_service" required>
+                                    <option value="car" {{ $service->type_service == 'car' ? 'selected' : ''}}>
+                                        {{ __('Car') }}
+                                    </option>
+                                    <option value="motorcycle" {{ $service->type_service == 'motorcycle' ? 'selected' : '' }}>
+                                        {{ __('Motorcycle') }}
+                                    </option>
+                                </select>
+                            </div>
                             <x-button>{{ __('Save') }}</x-button>
                             <x-link href="{{ route('services.index') }}" class="btn btn-danger">{{ __('Cancel') }}</x-link>
                         </form>
