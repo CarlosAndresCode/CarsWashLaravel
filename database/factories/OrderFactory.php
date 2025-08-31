@@ -27,7 +27,7 @@ class OrderFactory extends Factory
             'vehicle_id' => Vehicle::factory(),
             'service_id' => Service::factory(),
             'customer_id' => Customer::factory(),
-            'status' => fake()->randomElement(["pending","in"]),
+            'status' => fake()->randomElement(["pending","completed","in_progress"]),
             'price' => fake()->randomFloat(2, 0, 99999999.99),
             'date' => fake()->date(),
         ];
