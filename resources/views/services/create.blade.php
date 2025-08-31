@@ -11,7 +11,7 @@
                             @csrf
                             <div class="mb-3">
                                 <label for="name" class="form-label">{{__('Name')}}</label>
-                                <input type="text" class="form-control bg-white" id="name" name="name" required>
+                                <input type="text" class="form-control bg-white" id="name" name="name" required value="{{ old('name') }}">
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -20,11 +20,11 @@
                             </div>
                             <div class="mb-3">
                                 <label for="description" class="form-label">{{__('Description')}}</label>
-                                <input type="text" class="form-control bg-white" id="description" name="description">
+                                <input type="text" class="form-control bg-white" id="description" name="description" value="{{ old('description') }}">
                             </div>
                             <div class="mb-3">
                                 <label for="price" class="form-label">{{__('Price')}}</label>
-                                <input type="number" class="form-control bg-white" id="price" name="price" required>
+                                <input type="number" class="form-control bg-white" id="price" name="price" required value="{{ old('price') }}">
                                 @error('price')
                                  <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -34,10 +34,10 @@
                             <div class="mb-3">
                                 <label for="type_service" class="form-label">{{__('Type of Service')}}</label>
                                 <select class="form-select bg-white" id="type_service" name="type_service" required>
-                                    <option value="car" {{ $service->type_service == 'car' ? 'selected' : '' }}>{
-                                        { __('Car') }}
+                                    <option value="car" {{ old('type_service') == 'car' ? 'selected' : '' }}>
+                                        {{ __('Car') }}
                                     </option>
-                                    <option value="motorcycle" {{ $service->type_service == 'motorcycle' ? 'selected' : '' }}>
+                                    <option value="motorcycle" {{ old('type_service') == 'motorcycle' ? 'selected' : '' }}>
                                         {{ __('Motorcycle') }}
                                     </option>
                                 </select>
