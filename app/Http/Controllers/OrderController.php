@@ -17,7 +17,7 @@ class OrderController extends Controller
             'service:id,name,price',
             'designation.employee:id,name',
             'vehicle:id,name,model',
-        ])->paginate(20);
+        ])->paginate(10);
 
         return view('orders.index', compact('orders'));
     }
