@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enum\StatusOrder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -39,6 +40,7 @@ class Order extends Model
             'customer_id' => 'integer',
             'price' => 'decimal:2',
             'date' => 'date',
+            'status' => StatusOrder::class
         ];
     }
 
