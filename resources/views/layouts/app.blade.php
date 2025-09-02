@@ -31,10 +31,13 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    @include('partials.nav-user')
+                    @auth
+                        @include('partials.nav-user')
+                    @else
+                        @include('partials.nav-authentication')
+                    @endauth
 
                     <!-- Right Side Of Navbar -->
-                    @include('partials.nav-authentication')
                 </div>
             </div>
         </nav>
