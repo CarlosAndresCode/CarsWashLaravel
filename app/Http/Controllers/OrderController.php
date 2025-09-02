@@ -13,11 +13,11 @@ class OrderController extends Controller
     public function index()
     {
         $orders = Order::with([
-            'customer',
-            'service',
-            'designation.employee',
-            'vehicle',
-        ])->paginate();
+            'customer:id,name,email',
+            'service:id,name,price',
+            'designation.employee:id,name',
+            'vehicle:id,name,model',
+        ])->paginate(20);
 
         return view('orders.index', compact('orders'));
     }
