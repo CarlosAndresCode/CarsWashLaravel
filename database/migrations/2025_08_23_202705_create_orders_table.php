@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('vehicle_id')->constrained();
             $table->foreignId('service_id')->constrained();
             $table->foreignId('customer_id')->constrained();
-            $table->enum('status', ["pending","completed","in_progress", "cancelled"]);
+            $table->enum('status', ["pending","completed","in_progress", "cancelled"])->default('pending');
             $table->decimal('price', 10, 2);
             $table->date('date');
             $table->timestamps();
