@@ -8,6 +8,15 @@
     <li class="nav-item">
         <a href="{{ route('services.index') }}" class="nav-link {{ Route::is('services.*') ? 'text-primary ' : '' }}">{{ __('Services') }}</a>
     </li>
+    <li class="nav-item dropdown">
+        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+            {{ __('Orders') }}
+        </a>
+        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="{{ route('orders.index') }}">{{ __('All orders') }}</a>
+            <a class="dropdown-item" href="{{ route('orders.create') }}">{{ __('New order') }}</a>
+        </div>
+    </li>
 </ul>
 <ul class="navbar-nav ms-auto">
     {{--    Logout    --}}
