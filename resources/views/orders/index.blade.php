@@ -42,9 +42,7 @@
                                         <td>{{ $order->vehicle->name }}</td>
                                         <td>{{ $order->service->name }}</td>
                                         <td>{{ $order->customer->full_name }}</td>
-                                        <th>
-                                            {{ optional(optional($order->designation)->employee)->full_name ?? __('—') }}
-                                        </th>
+                                        <td>{{ $order->designation->employee->name ?? __('No assignment') }}</td>
                                         <td>{{ $order->status }}</td>
                                         <td class="text-center">
                                             <a href="#" class="btn btn-primary btn-sm">{{__('Edit')}}</a>
