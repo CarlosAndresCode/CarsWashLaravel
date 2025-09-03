@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CreateCustomerRequest;
 use App\Models\Customer;
+use App\Trait\AlertSweetTrait;
 use Illuminate\Http\Request;
+use App\Http\Requests\CreateCustomerRequest;
+
 
 class CustomerController extends Controller
 {
+    use AlertSweetTrait;
     /**
      * Display a listing of the resource.
      */
@@ -39,11 +42,15 @@ class CustomerController extends Controller
      */
     public function store(CreateCustomerRequest $request)
     {
-
         $customer = Customer::create($request->validated());
 
-        return redirect()->route('customers.index')
-            ->with('success', 'Customer created successfully.');
+        if($customer){
+            $this->generateAlert('success', 'Customer created successfully.');
+        }else{
+            $this->generateAlert('error', 'Error creating customer.');
+        }
+
+        return redirect()->route('customers.index');
     }
 
     /**
