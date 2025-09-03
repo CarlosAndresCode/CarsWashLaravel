@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CreateEmployeeRequest;
+use App\Http\Requests\UpdateEmployeeRequest;
 use App\Models\Employee;
 use Illuminate\Http\Request;
+use App\Trait\AlertSweetTrait;
+use App\Http\Requests\CreateEmployeeRequest;
+
 
 class EmployeeController extends Controller
 {
+    use AlertSweetTrait;
     /**
      * Display a listing of the resource.
      */
@@ -38,10 +42,14 @@ class EmployeeController extends Controller
      */
     public function store(CreateEmployeeRequest $request)
     {
-        Employee::create($request->validate());
+        $employee = Employee::create($request->validated());
 
-        return redirect()->route('employees.index')
-                         ->with('success', 'Employee created successfully.');
+        if ($employee)
+            $this->generateAlert('success', 'Employee created successfully.');
+        else
+            $this->generateAlert('error', 'Error creating employee.');
+
+        return redirect()->route('employees.index');
     }
 
     /**
@@ -63,20 +71,16 @@ class EmployeeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Employee $employee)
+    public function update(UpdateEmployeeRequest $request, Employee $employee)
     {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'last_name' => 'required|string|max:255',
-            'email' => 'required|email|unique:employees,email,' . $employee->id,
-            'phone' => 'nullable|string|max:20',
-            'position' => 'nullable|string|max:255',
-        ]);
+        $employee->update($request->validated());
 
-        $employee->update($validated);
+        if($employee)
+            $this->generateAlert('success', 'Employee updated successfully.');
+        else
+            $this->generateAlert('error', 'Error updating employee.');
 
-        return redirect()->route('employees.index')
-                         ->with('success', 'Employee updated successfully.');
+        return redirect()->route('employees.index');
     }
 
     /**

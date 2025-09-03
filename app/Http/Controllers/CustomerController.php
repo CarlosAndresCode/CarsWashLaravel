@@ -45,11 +45,11 @@ class CustomerController extends Controller
     {
         $customer = Customer::create($request->validated());
 
-        if($customer){
+        if($customer)
             $this->generateAlert('success', 'Customer created successfully.');
-        }else{
+        else
             $this->generateAlert('error', 'Error creating customer.');
-        }
+
 
         return redirect()->route('customers.index');
     }
@@ -77,11 +77,11 @@ class CustomerController extends Controller
     {
         $customer->update($request->validated());
 
-        if($customer){
+        if($customer)
             $this->generateAlert('success', 'Customer updated successfully.');
-        }else{
+        else
             $this->generateAlert('error', 'Error updating customer.');
-        }
+
 
         return redirect()->route('customers.index');
     }
