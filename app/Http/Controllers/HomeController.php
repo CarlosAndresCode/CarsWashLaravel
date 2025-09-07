@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\View;
 
 class HomeController extends Controller
 {
@@ -23,6 +24,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $customers = \App\Models\Customer::select('id')->get();
+        $orders = \App\Models\Order::all();
+
+        $stats = [
+            'totalCustomers' => $customers->totalCustomers(),
+            'sumaryOrders' => $orders->sumaryOrders(),
+        ];
+
+        return view('dashboard', compact('stats'));
     }
 }

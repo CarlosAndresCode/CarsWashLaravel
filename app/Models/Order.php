@@ -2,10 +2,15 @@
 
 namespace App\Models;
 
+use App\Collection\OrderCollection;
+use App\Enum\StatusOrder;
+use Illuminate\Database\Eloquent\Attributes\CollectedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
+#[CollectedBy(OrderCollection::class)]
 class Order extends Model
 {
     use HasFactory;
@@ -38,6 +43,7 @@ class Order extends Model
             'customer_id' => 'integer',
             'price' => 'decimal:2',
             'date' => 'date',
+            'status' => StatusOrder::class
         ];
     }
 
@@ -54,5 +60,10 @@ class Order extends Model
     public function customer(): BelongsTo
     {
         return $this->belongsTo(Customer::class);
+    }
+
+    public function designation(): HasOne
+    {
+        return $this->HasOne(Designation::class);
     }
 }

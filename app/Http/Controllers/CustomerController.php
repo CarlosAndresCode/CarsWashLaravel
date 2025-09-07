@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CreateCustomerRequest;
 use App\Models\Customer;
+use App\Trait\AlertSweetTrait;
 use Illuminate\Http\Request;
+use App\Http\Requests\CreateCustomerRequest;
+use App\Http\Requests\UpdateCustomerRequest;
+
 
 class CustomerController extends Controller
 {
+    use AlertSweetTrait;
     /**
      * Display a listing of the resource.
      */
@@ -39,11 +43,15 @@ class CustomerController extends Controller
      */
     public function store(CreateCustomerRequest $request)
     {
-
         $customer = Customer::create($request->validated());
 
-        return redirect()->route('customers.index')
-            ->with('success', 'Customer created successfully.');
+        if($customer)
+            $this->generateAlert('success', 'Customer created successfully.');
+        else
+            $this->generateAlert('error', 'Error creating customer.');
+
+
+        return redirect()->route('customers.index');
     }
 
     /**
@@ -65,20 +73,17 @@ class CustomerController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Customer $customer)
+    public function update(UpdateCustomerRequest $request, Customer $customer)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'last_name' => 'required|string|max:255',
-            'email' => 'required|email|unique:customers,email,'.$customer->id,
-            'phone' => 'nullable|string|max:20',
-            'address' => 'nullable|string|max:255',
-        ]);
+        $customer->update($request->validated());
 
-        $customer->update($request->all());
+        if($customer)
+            $this->generateAlert('success', 'Customer updated successfully.');
+        else
+            $this->generateAlert('error', 'Error updating customer.');
 
-        return redirect()->route('customers.index')
-            ->with('success', 'Customer updated successfully.');
+
+        return redirect()->route('customers.index');
     }
 
     /**

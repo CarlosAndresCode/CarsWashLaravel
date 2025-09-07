@@ -31,20 +31,22 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    @include('partials.nav-user')
+                    @auth
+                        @include('partials.nav-user')
+                    @else
+                        @include('partials.nav-authentication')
+                    @endauth
 
                     <!-- Right Side Of Navbar -->
-                    @include('partials.nav-authentication')
                 </div>
             </div>
         </nav>
 
         <main class="py-4">
-            <x-alert></x-alert>
-
             @yield('content')
         </main>
     </div>
+    @include('sweetalert2::index')
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.min.js" integrity="sha384-7qAoOXltbVP82dhxHAUje59V5r2YsVfBafyUDxEdApLPmcdhBPg1DKg1ERo0BZlK" crossorigin="anonymous"></script>
 </body>

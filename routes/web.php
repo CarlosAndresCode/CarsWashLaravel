@@ -9,6 +9,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 Route::resource('/customers', App\Http\Controllers\CustomerController::class)
     ->middleware('auth')
     ->except(['show']);
@@ -20,3 +21,6 @@ Route::resource('/employees', App\Http\Controllers\EmployeeController::class)
 Route::resource('/services', App\Http\Controllers\ServiceController::class)
     ->middleware('auth')
     ->except(['show']);
+
+Route::resource('/orders', App\Http\Controllers\OrderController::class)
+    ->middleware('auth');
