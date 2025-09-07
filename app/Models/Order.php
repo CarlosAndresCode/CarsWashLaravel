@@ -66,4 +66,9 @@ class Order extends Model
     {
         return $this->HasOne(Designation::class);
     }
+
+    public function getFormattedPriceAttribute(): string
+    {
+        return '$ ' . number_format($this->price, 0 , ',', '.');
+    }
 }

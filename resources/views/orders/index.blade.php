@@ -31,6 +31,7 @@
                                     <th>Service</th>
                                     <th>Customer</th>
                                     <th>Employee</th>
+                                    <th>Total</th>
                                     <th>Status</th>
                                     <th class="text-center">Actions</th>
                                 </tr>
@@ -43,6 +44,7 @@
                                         <td>{{ $order->service->name }}</td>
                                         <td>{{ $order->customer->full_name }}</td>
                                         <td>{{ $order->designation->employee->name ?? __('No assignment') }}</td>
+                                        <td>{{ $order->formatted_price }}</td>
                                         <td>{!! $order->status->badge() !!}</td>
                                         <td class="text-center">
                                             <a href="#" class="btn btn-primary btn-sm">{{__('Edit')}}</a>
