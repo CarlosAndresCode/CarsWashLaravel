@@ -26,14 +26,14 @@
                         <table class="table table-bordered align-middle">
                             <thead>
                                 <tr>
-                                    <th class="text-center">ID</th>
-                                    <th>Vehicle</th>
-                                    <th>Service</th>
-                                    <th>Customer</th>
-                                    <th>Employee</th>
-                                    <th>Total</th>
-                                    <th>Status</th>
-                                    <th class="text-center">Actions</th>
+                                    <th class="text-center">{{ __('ID') }}</th>
+                                    <th>{{ __('Vehicle') }}</th>
+                                    <th>{{ __('Service') }}</th>
+                                    <th>{{ __('Customer') }}</th>
+                                    <th>{{ __('Employee') }}</th>
+                                    <th>{{ __('Total') }}</th>
+                                    <th>{{ __('Status') }}</th>
+                                    <th class="text-center">{{ __('Actions') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
