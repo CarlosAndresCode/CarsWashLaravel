@@ -4,7 +4,7 @@ namespace App\Collection;
 
 class OrderCollection extends \Illuminate\Database\Eloquent\Collection
 {
-    public function sumaryOrders(): array
+    public function summaryOrders(): array
     {
         return [
             'totalOrders' => $this->totalOrders(),

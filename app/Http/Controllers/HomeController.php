@@ -29,7 +29,7 @@ class HomeController extends Controller
 
         $stats = [
             'totalCustomers' => $customers->totalCustomers(),
-            'sumaryOrders' => $orders->sumaryOrders(),
+            'summaryOrders' => $orders->summaryOrders(),
         ];
 
         return view('dashboard', compact('stats'));

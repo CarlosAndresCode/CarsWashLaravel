@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
+use App\Collection\CustomerCollection;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Attributes\CollectedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
-#[CollectedBy(\App\Collection\CustomerCollection::class)]
+#[CollectedBy(CustomerCollection::class)]
 class Customer extends Model
 {
     use HasFactory;
