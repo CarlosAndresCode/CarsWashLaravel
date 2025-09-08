@@ -25,7 +25,7 @@ class Order extends Model
         'service_id',
         'customer_id',
         'status',
-        'price',
+        'total',
         'date',
     ];
 
@@ -41,7 +41,7 @@ class Order extends Model
             'vehicle_id' => 'integer',
             'service_id' => 'integer',
             'customer_id' => 'integer',
-            'price' => 'decimal:2',
+            'total' => 'decimal:2',
             'date' => 'date',
             'status' => StatusOrder::class
         ];
@@ -69,6 +69,6 @@ class Order extends Model
 
     public function getFormattedPriceAttribute(): string
     {
-        return '$ ' . number_format($this->price, 0 , ',', '.');
+        return '$ ' . number_format($this->total, 0 , ',', '.');
     }
 }

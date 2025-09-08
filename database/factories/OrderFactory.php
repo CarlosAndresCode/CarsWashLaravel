@@ -28,7 +28,7 @@ class OrderFactory extends Factory
             'service_id' => Service::factory(),
             'customer_id' => Customer::factory(),
             'status' => fake()->randomElement(["pending","completed","in_progress", "cancelled"]),
-            'price' => fake()->randomFloat(2, 0, 150000.00),
+            'total' => fake()->randomFloat(2, 0, 150000.00),
             'date' => fake()->date(),
         ];
     }

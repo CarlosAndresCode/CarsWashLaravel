@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreignId('service_id')->constrained();
             $table->foreignId('customer_id')->constrained();
             $table->enum('status', ["pending","completed","in_progress", "cancelled"])->default('pending');
-            $table->decimal('price', 10, 2);
+            $table->decimal('total', 10, 2);
             $table->date('date');
             $table->timestamps();
         });
