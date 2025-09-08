@@ -30,6 +30,8 @@ class OrderFactory extends Factory
             'status' => fake()->randomElement(["pending","completed","in_progress", "cancelled"]),
             'total' => fake()->randomFloat(2, 0, 150000.00),
             'date' => fake()->date(),
+            'year' => fake()->year(),
+            'month' => fake()->month(),
         ];
     }
 }
