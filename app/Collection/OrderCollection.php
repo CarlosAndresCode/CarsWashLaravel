@@ -19,7 +19,7 @@ class OrderCollection extends \Illuminate\Database\Eloquent\Collection
 
     public function averageOrderPrice(): float
     {
-        return $this->avg('price');
+        return $this->avg('total');
     }
 
     public function averageOrderByEmployee(): float
