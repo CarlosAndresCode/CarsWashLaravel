@@ -41,7 +41,7 @@
                                         <td>{{ $customer->phone }}</td>
                                         <td class="text-center">
                                             <a href="{{ route('customers.edit', $customer->id) }}"
-                                               class="btn btn-primary btn-sm">{{__('Edit')}}</a>
+                                               class="btn btn-primary">{{__('Edit')}}</a>
                                         </td>
                                     </tr>
                                 @endforeach
